@@ -102,7 +102,8 @@
   
   body {
       background-color: white;
-      
+      height: 100vh;
+      overflow: hidden;
     }
     
   /* utilities */
@@ -112,11 +113,25 @@
     gap: var(--gap, 1rem);
   }
 
+
+
   nav {
     display: grid;
     place-items: center;
     padding: 5rem 0;
   }
+
+  .blob1 {
+    position: absolute;    
+    z-index: -1;
+  }
+
+  .blob2 {
+    position: absolute;    
+    right: 0;
+    z-index: -1;
+  }
+
 
 .links-wrapper {
     display: flex;
@@ -129,6 +144,22 @@
     font-size: 1.6rem;
     text-decoration: none;
     color: var(--clr-black);
+    position: relative;
+
+}
+
+.link::before {
+  content:'';
+  height: 2px;
+  width: 0px;
+  background-color: var(--clr-black);
+  bottom: -5px;
+  position:absolute ;
+  transition: all 0.3s ease-in;
+}
+
+.link:hover::before {
+  width: 40px;
 }
 
 .link.active {
@@ -173,13 +204,13 @@ main {
 }
 
 .profile-image {
-  width: 450px;
+  width: 430px;
   height: 556px;
-  border-radius: 5.6rem;
+  border-radius: 1rem;
   background-image: url('./assets/my-image.png');
-  background-position: center;
+  background-position:center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   position: relative;
 }
 
@@ -190,14 +221,16 @@ main {
   background: #FFFFFF;
   border: 1px solid #29292980;
   box-shadow: 0px 4px 100px rgba(0, 0, 0, 0.25);
-  border-radius: 56px;
+  border-radius: 1rem;
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
   justify-content: center;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
+  font-weight: 500;
   text-decoration: none;
+  line-height: 28px;
   color: var(--clr-black);
   gap: 2rem;
 
@@ -212,4 +245,64 @@ main {
 .behance-link {
   right: -200px;
   top: -80px;
+}
+
+.name {
+  position: absolute;
+  font-size: 7.2rem;
+  font-weight: 400;
+  right: -340px;
+  bottom: 30%;
+  line-height: 100%;
+  color: rgba(0, 0, 0, 0.25);
+}
+
+.circle {
+   position: absolute;
+   width: 200px;
+   height: 200px;
+   bottom: 50px;
+   left: 50px;
+  letter-spacing: 5px;
+  font-size: 1.6rem;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+  border-radius: 50%;
+  border: 2px solid #E46B0B;
+}
+
+.circle::before {
+  content: '';
+  width: 150px;
+  height: 150px;
+  border: 2px solid #E46B0B;
+  position: absolute;
+  border-radius: 50%;
+  background-image: url('./assets/Arrow\ 3.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg)
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.text {
+  width: 100%;
+  height: 100%;
+  animation: rotate 20s linear infinite ;
+}
+
+.circle span {
+  position: absolute;
+  left: 50%;
+  transform-origin: 0 100px;
 }
